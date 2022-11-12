@@ -1,53 +1,73 @@
 import React from 'react';
 import { useState,useEffect } from 'react';
-import './Bodycarepage.css';
+import './Productspage.css';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { getProductsData } from "../Redux/AppReducer/action";
 
 const Bodycarepage = () => {
 
-  const [product, setproduct] = useState([]);
+  // const [product, setproduct] = useState([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
-  const products = useSelector((store) => store.AppReducer.products);
-  const initialCategoryParams = searchParams.getAll("category");
-  const [category, setCategory] = useState(initialCategoryParams || []);
-  const location = useLocation();
-  const initialSortParams = searchParams.get("sortBy");
-  const [sortBy, setSortBy] = useState("");
+  const products = useSelector((state) => state.AppReducer.products);
+  const urlCategory = searchParams.getAll("category");
+  const urlSort = searchParams.get("sortBy");
+  const [category, setCategory] = useState(urlCategory || []);
+  // const location = useLocation();
+  const [sortBy, setSortBy] = useState( urlSort || "");
 
-
+  
     useEffect(() => {
-        fetch("https://thecoolclub.onrender.com/products/")
-    .then((d) => d.json())
-    .then((data) => {
-        console.log("data",data)
-        setproduct(data);
-    })
-    }, []);
-
-
-    useEffect(() => {
-        if (category || sortBy) {
-          setSearchParams({ category: category, sortBy: sortBy });
+        if (category) {
+          setSearchParams({ category: category});
+          dispatch(getProductsData({params : {category}}));
         }
-      }, [category, setSearchParams, sortBy]);
-    
+      }, [category, dispatch, setSearchParams]);
+
       useEffect(() => {
-        if (products.length === 0 || location) {
-          const sortBy = searchParams.get("sortBy");
-          const queryParams = {
-            params: {
-              category: searchParams.getAll("category"),
-              _sort: sortBy && `price`,
-              _order: sortBy,
-            },
-          };
-          dispatch(getProductsData(queryParams))
+        if(sortBy)
+        {
+          const params ={
+            category : searchParams.getAll("category"),
+            sortBy,
+          }
+          const getproductsparams = {
+            params : {
+              category : searchParams.getAll("category"),
+              _sort : "price",
+              order : sortBy
+            }
+          }
+
+          console.log(getproductsparams);
+          setSearchParams(params)
+          dispatch(getProductsData(getproductsparams))
+          
         }
-      }, []);
+      }, [setSearchParams,dispatch, searchParams, sortBy])
+
+      useEffect(() => {
+        if(products.length === 0)
+        {
+          dispatch(getProductsData());
+        }
+      }, [])
+    
+      // useEffect(() => {
+      //   if (products.length === 0 || location) {
+      //     const sortBy = searchParams.get("sortBy");
+      //     const queryParams = {
+      //       params: {
+      //         category: searchParams.getAll("category"),
+      //         _sort: sortBy && `price`,
+      //         _order: sortBy,
+      //       },
+      //     };
+      //     dispatch(getProductsData(queryParams))
+      //   }
+      // }, [location.search]);
     
       const handleChange = (e) => {
         const option = e.target.value;
@@ -60,10 +80,12 @@ const Bodycarepage = () => {
         }
         setCategory(newCategory);
       };
+      console.log(category)
     
       const handleSort = (e) => {
         setSortBy(e.target.value);
       };
+      console.log(sortBy);
   
   return (
     <div className='bodycarepage'>
@@ -82,17 +104,17 @@ const Bodycarepage = () => {
         <div className="filterdivin">
           <input
             type="checkbox"
-            defaultChecked={category.includes(`Body Bath`)}
-            value="Body Bath"
+            defaultChecked={category.includes(`Body Care`)}
+            value="Body Care"
             onChange={handleChange}
           />
-          <label  className='filterpara'>Body Bath</label>
+          <label  className='filterpara'>Body Care</label>
         </div>
         <div className="filterdivin">
           <input
             type="checkbox"
-            defaultChecked={category.includes(`Body Cream`)}
-            value="Body Cream"
+            defaultChecked={category.includes(`body cream`)}
+            value="body cream"
             onChange={handleChange}
           />
           <label  className='filterpara'>Body Cream</label>
@@ -100,11 +122,11 @@ const Bodycarepage = () => {
         <div className="filterdivin">
           <input
             type="checkbox"
-            defaultChecked={category.includes(`Spray`)}
-            value="Spray"
+            defaultChecked={category.includes(`body oil`)}
+            value="body oil"
             onChange={handleChange}
           />
-          <label  className='filterpara'>Spray</label>
+          <label  className='filterpara'>Body Oil</label>
           </div>
           <div className="filterdivin">
           <input
@@ -275,12 +297,13 @@ const Bodycarepage = () => {
                                 return(
                                 <Link>
                                 <div className='bodycareproductsinside'>
-                                <div className='bodycareproductsinsideimg' key={prod.id}><img className='bodycareproductsinsideimgin' src={prod.image} alt="" /></div>
-                                <div className='bodycareproductsinsidead' key={prod.id}><p className='bodycareproductsinsideadpara'>{prod.ad}</p></div>
-                                <div className='bodycareproductsinsidename' key={prod.id}><p className='bodycareproductsinsidenamepara'>{prod.name}</p></div>
+                                <div className='bodycareproductsinsideimg' key={prod.id}><img className='bodycareproductsinsideimgin' src={prod.productimageurl} alt="" /></div>
+                                <div className='bodycareproductsinsidead' key={prod.id}><p className='bodycareproductsinsideadpara'>{prod.subcategory}</p></div>
+                                <div className='bodycareproductsinsidename' key={prod.id}><p className='bodycareproductsinsidenamepara'>{prod.title}</p></div>
+                                <div className='bodycareproductsinsidename' key={prod.id}><p className='bodycareproductsinsidesubtitlepara'>{prod.subtitle}</p></div>
                                 <div className='bodycareproductsinsidetype' key={prod.id}><p className='bodycareproductsinsidetypein'>{prod.category}</p></div>
-                                <div className='bodycareproductsinsideprice' key={prod.id}><p className='bodycareproductsinsidepricein'>{prod.price}</p></div>
-                                <div className='bodycareproductsinsideaddtobag' key={prod.id}><button className='bodycareproductsinsideaddtobagbtn'>{prod.addtobag}</button></div>
+                                <div className='bodycareproductsinsideprice' key={prod.id}><p className='bodycareproductsinsidepricein'>$ {prod.price}</p></div>
+                                <div className='bodycareproductsinsideaddtobag' key={prod.id}><button className='bodycareproductsinsideaddtobagbtn'>ADD TO BAG</button></div>
                                 </div>
                                 </Link>
                             );

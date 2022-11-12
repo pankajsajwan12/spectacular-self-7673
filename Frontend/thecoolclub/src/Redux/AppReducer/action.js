@@ -6,7 +6,7 @@ export const getProductsData = (params) => (dispatch) => {
   dispatch({ type: types.GET_PRODUCT_REQUEST });
   return axios
     .get(
-      "http://localhost:7607/products",
+      "https://thecoolclub.onrender.com/products/",
       params
     )
     .then((res) => {

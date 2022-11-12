@@ -1,16 +1,18 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import LandingPage from '../Akshay/Pages/LandingPage'
-import Bodycarepage from '../Pages/Bodycarepage'
+// import Bodycarepage from '../Pages/Bodycarepage'
 import ShippingPage from "../components/pankajsingh/Shipping/ShippingPage"
 import AdminPage from '../Pages/AdminPage'
+import BillingPage from '../components/pankajsingh/Shipping/BillingPage'
+import Productspage from '../Pages/Productspage'
 
 
 const AllRoutes = () => {
   return (
     <Routes>
         <Route path="/home" element={<LandingPage/>}/>
-        <Route path="/bodyCare" element={<Bodycarepage/>}/>
+        {/* <Route path="/bodyCare" element={<Bodycarepage/>}/> */}
         <Route path="/shipping" element={<ShippingPage/>}/>
         <Route path="/admin" element={<AdminPage/>}/>
     </Routes>

@@ -347,8 +347,8 @@ const ShippingPage = () => {
           
           </div>
           <div className="shipping_page_left_main">
-            <Box>
-               <Heading fontWeight='400'> YOUR ORDER</Heading>
+            <Box className="shipping_page_left_main_inside">
+               <Heading fontWeight='400' fontSize='18px' className="shipping_page_left_main_your_order"> YOUR ORDER</Heading>
             </Box>
             <Box display='flex' className="border_product">
                <Box mt="1rem">
@@ -356,33 +356,33 @@ const ShippingPage = () => {
                  className="productImage"/>
                </Box>
                <Box className="img_Div" ml="1rem">
-                  <p className="lineHeight lineHeigh_heading">TWISTED PEPPERMINT</p>
+                  <p className="titleimg_div">TWISTED PEPPERMINT</p>
                   <p className="lineHeight">Gentle Foaming Hand Soap</p>
                   <p className="lineHeight">Size: 8.75 fl oz / 259 mL</p>
                   <p className="lineHeight">Qty : 1</p>
                </Box>
             </Box>
-            <Box borderBottom="5px solid rgb(229,229,229)" textAlign='right' >
+            <Box borderBottom="5px solid rgb(229,229,229)" textAlign='right'>
                 <Text mr="2.5rem">$7.50</Text>
             </Box>
 
-            <Box display='flex'>
-               <Box width='60%' textAlign='left'ml="1.5rem"> 
+            <Box className="merchandise_subtotal">
+               <Box ml="1.5rem"  className="merchandise_subtotal_insidebox"> 
                   <Text mt="1.5rem"> MERCHANDISE SUBTOTAL</Text>
                   <Text mt="1.5rem"> ESTIMATED SHIPPING & <br/> HANDLING - Standart</Text>
                   <Text mt="1.5rem"> SALES TAX</Text>
                </Box>
-               <Box ml='5rem'>
+               <Box ml='5rem' className="merchandise_subtotal_insidebox_price">
                   <Text mt="1.5rem"> $7.50</Text>
                   <Text mt="1.5rem"> $10.99</Text>
                   <Text mt="2.5rem" > $1.85</Text>
                </Box>
             </Box>
-            <Box width='60%' textAlign='justify' ml="1.5rem" mb="1rem"> Tax is estimated and will be calculated when your order is processed</Box>
+            <Box className="tax_description"  ml="1.5rem" mb="1rem"> Tax is estimated and will be calculated when your order is processed</Box>
 
             <Box display='flex' justifyContent='space-between' borderTop="5px solid rgb(229,229,229)" pt="1rem" fontWeight='bold'>
-               <Box ml="2rem"> ORDER TOTAL (USD)</Box>
-               <Box mr="3rem"> $20.34</Box>
+               <Box className="order_total" ml="2rem"> ORDER TOTAL (USD)</Box>
+               <Box className="order_total_price"  mr="3rem"> $20.34</Box>
             </Box>
           </div>
         </div>
