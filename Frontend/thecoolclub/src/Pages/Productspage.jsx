@@ -4,6 +4,7 @@ import './Productspage.css';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { getProductsData } from "../Redux/AppReducer/action";
+import BodyCareFilter from './BodyCareFilter';
 
 const Bodycarepage = () => {
 
@@ -21,7 +22,8 @@ const Bodycarepage = () => {
   
     useEffect(() => {
         if (category) {
-          setSearchParams({ category: category});
+          
+    setSearchParams({ category: category});
           dispatch(getProductsData({params : {category}}));
         }
       }, [category, dispatch, setSearchParams]);
@@ -53,21 +55,7 @@ const Bodycarepage = () => {
         {
           dispatch(getProductsData());
         }
-      }, [])
-    
-      // useEffect(() => {
-      //   if (products.length === 0 || location) {
-      //     const sortBy = searchParams.get("sortBy");
-      //     const queryParams = {
-      //       params: {
-      //         category: searchParams.getAll("category"),
-      //         _sort: sortBy && `price`,
-      //         _order: sortBy,
-      //       },
-      //     };
-      //     dispatch(getProductsData(queryParams))
-      //   }
-      // }, [location.search]);
+      }, []);
     
       const handleChange = (e) => {
         const option = e.target.value;
@@ -317,8 +305,8 @@ const Bodycarepage = () => {
                 
 
         </div>
-        </div>
-         </div> 
+      </div>
+    </div>                             
   )
 }
 

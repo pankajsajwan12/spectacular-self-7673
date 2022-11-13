@@ -1,0 +1,16 @@
+
+.BodyCare_main_Div{
+    display: flex;
+}
+.BodyCare_main_Div_leftSide{
+    width: 10%;
+}
+.BodyCare_main_Div_RightSide{
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+
+.BodyCare_main_Div_AllProducts{
+    text-align: center;
+}
