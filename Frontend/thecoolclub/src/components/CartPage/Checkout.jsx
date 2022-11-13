@@ -49,15 +49,15 @@ const navigate = useNavigate();
                 <Text>{total}</Text>
             </Flex>
              <Flex>
-                <Text>tax</Text>
+                <Text>Tax</Text>
                 <Spacer />
-                <Text>2</Text>
+                <Text>0</Text>
             </Flex>
-             <Flex>
+             {/* <Flex>
                 <Text>Coupon Code Discount</Text>
                 <Spacer />
-                <Text>- 0</Text>
-            </Flex>
+                <Text>0</Text>
+            </Flex> */}
              <Flex>
                 <Text fontSize="25px">Total</Text>
                 <Spacer />
@@ -67,7 +67,7 @@ const navigate = useNavigate();
         </Stack>
         </Flex>
         <Box textAlign='center' mt="1.5rem">
-            <Button background="black" color="white" onClick={() => {
+            <Button _hover={{bg:"green",fontSize:"18px"}} background="black" color="white" borderRadius="none" onClick={() => {
                 navigate("/billing")
             }}>Go To Payment </Button>
         </Box>

@@ -5,6 +5,9 @@
     padding: 0;
     box-sizing: border-box; */
 }
+/* *{
+    font-size: x-small;
+} */
 
 .shipping_page{
     margin-top: 1rem;
@@ -36,7 +39,8 @@
 
 .shipping_page_left_main{
     margin-left: 10%;
-    width: 21%;
+    width: max-content;
+    padding: 20px;
     margin-top: 3rem;
     border: 2px solid rgb(229,229,229);
     height: 90vh;

@@ -24,7 +24,8 @@ import { POST_LOGIN_FAILURE, POST_LOGIN_REQUEST, POST_LOGIN_SUCCESS } from "./ac
                 isAuth : true,
                 isError : false,
                 isLoading : false,
-                token : payload
+                currentUser:payload.first_Name,
+                token : payload.token
             }
         case POST_LOGIN_FAILURE :
             return {

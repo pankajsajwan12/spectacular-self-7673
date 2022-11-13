@@ -10,35 +10,48 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const categories = [
   {
     title: "Shop Body Care",
+    link: "/bodyCare",
+
     image:
       "https://cdn-fsly.yottaa.net/5d669b394f1bbf7cb77826ae/www.bathandbodyworks.com/v~4b.219/on/demandware.static/-/Sites-BathAndBodyWorks-Library/default/dw90169280/images/Christmas2022/bc_dream-bright_c1_vn.jpg?yocs=o_s_",
   },
   {
     title: "Shop Candles",
+    link: "/bodyCare",
+
     image:
       "https://cdn-fsly.yottaa.net/5d669b394f1bbf7cb77826ae/www.bathandbodyworks.com/v~4b.219/on/demandware.static/-/Sites-BathAndBodyWorks-Library/default/dw9c3dac1d/images/Christmas2022/cndl_holtrads-wb_c1_vn.jpg?yocs=o_s_",
   },
   {
     title: "Shop Wallflowers",
+    link: "/bodyCare",
+
     image:
       "https://cdn-fsly.yottaa.net/5d669b394f1bbf7cb77826ae/www.bathandbodyworks.com/v~4b.219/on/demandware.static/-/Sites-BathAndBodyWorks-Library/default/dw4201241f/images/Christmas2022/diff_decor_c1_vn.jpg?yocs=o_s_",
   },
   {
     title: "Shop Hand Soaps",
+    link: "/bodyCare",
+
     image:
       "https://cdn-fsly.yottaa.net/5d669b394f1bbf7cb77826ae/www.bathandbodyworks.com/v~4b.219/on/demandware.static/-/Sites-BathAndBodyWorks-Library/default/dw8ac572be/images/Christmas2022/sp_holtrads-gifting_c1_vn.jpg?yocs=o_s_",
   },
   {
     title: "Shop Aromatherapy",
+    link: "/bodyCare",
+
     image:
       "https://cdn-fsly.yottaa.net/5d669b394f1bbf7cb77826ae/www.bathandbodyworks.com/v~4b.219/on/demandware.static/-/Sites-BathAndBodyWorks-Library/default/dwe05b7acb/images/Christmas2022/xcat_wellness-pov_c1_vn.jpg?yocs=o_s_",
   },
   {
     title: "Shop Men's",
+    link: "/bodyCare",
+
     image:
       "https://cdn-fsly.yottaa.net/5d669b394f1bbf7cb77826ae/www.bathandbodyworks.com/v~4b.219/on/demandware.static/-/Sites-BathAndBodyWorks-Library/default/dwcf3b1b26/images/Christmas2022/bc_mens-sfl-blktie_c1_vn.jpg?yocs=o_s_",
   },
@@ -82,6 +95,7 @@ const midCollection = [
 ];
 
 const Category = () => {
+  const navigate = useNavigate();
   return (
     <>
       <Center w="100%" fontWeight="bold" fontSize="24px">
@@ -99,7 +113,7 @@ const Category = () => {
           return (
             <GridItem>
               <VStack>
-                <Link>
+                <Link onClick={() => navigate(el.link)}>
                   <Image h="168px" src={el.image} />
                 </Link>
                 <Link textDecoration="underline">{el.title}</Link>

@@ -108,6 +108,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
+  const userName = useSelector((store) => store.Auth.currentUser);
   const toast = useToast();
   const isAuth = JSON.parse(localStorage.getItem("isAuth")) || false;
   // const store = useSelector(store => store);
@@ -177,7 +178,7 @@ const Navbar = () => {
                 fontWeight="bold"
                 display={isAuth ? "block" : "none"}
               >
-                {"User"}
+                {userName?userName:"Signout"}
               </Text>
               <Image
                 h="30px"
@@ -254,9 +255,8 @@ const Navbar = () => {
               // console.log(isAuth);
               if (isAuth == false) {
                 navigate("/login");
-              }
-              else{
-                navigate("/cart")
+              } else {
+                navigate("/cart");
               }
             }}
             src="https://cdn-fsly.yottaa.net/5d669b394f1bbf7cb77826ae/www.bathandbodyworks.com/v~4b.219/on/demandware.static/Sites-BathAndBodyWorks-Site/-/en_US/v1667990775125/images/svg-icons/UI-AddToBag-v2.svg?yocs=o_s_"
